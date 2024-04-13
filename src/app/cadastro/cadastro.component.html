@@ -3,10 +3,12 @@
 
   <form class="principal__formulario" id="formulario" #f="ngForm" (submit)="cadastrar(f)">
     <h3 class="principal__subtitulo">Dados pessoais</h3>
+
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="nome">Nome Completo</label>
-      <input name="nome" id="nome" class="campo__escrita">
+      <input name="nome" id="nome" class="campo__escrita" ngModel required minlength="2">
     </div>
+
     <div class="formulario__dupla">
       <div class="formulario__campo">
         <label class="campo__etiqueta" for="nascimento">Nascimento</label>
