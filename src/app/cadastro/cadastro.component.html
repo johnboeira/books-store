@@ -6,10 +6,10 @@
 
     <div class="formulario__campo" >
       <label class="campo__etiqueta" for="nome">Nome Completo</label>
-      <input name="nome" id="nome" class="campo__escrita" ngModel required minlength="2">
-      <div *ngIf="f.controls['nome']?.touched">
-        <span class="erro__texto" *ngIf="f.controls['nome']?.errors?.['required']">O campo deve ser preenchido</span>
-        <span class="erro__texto" *ngIf="f.controls['nome']?.errors?.['minlength']">O campo deve ter no mínimo dois caracteres</span>
+      <input name="nome" id="nome" class="campo__escrita" #nome="ngModel" ngModel required minlength="2">
+      <div *ngIf="nome?.touched">
+        <app-mensagem *ngIf="nome?.errors?.['required']" mensagem="O campo deve ser preenchido"></app-mensagem>
+        <app-mensagem *ngIf="nome?.errors?.['minlength']" mensagem="O campo deve ter no mínimo dois caracteres"></app-mensagem>
       </div>  
     </div>
 
@@ -31,10 +31,10 @@
     
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="email">E-mail</label>
-      <input name="email" id="email" type="email" class="campo__escrita" ngModel required pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"/>
-      <div *ngIf="f.controls['email']?.touched">
-        <span class="erro__texto" *ngIf="f.controls['email']?.errors?.['required']">O campo deve ser preenchido</span>
-        <span class="erro__texto" *ngIf="f.controls['email']?.errors?.['pattern']">O campo de email deve seguir este padrão: "exemplo@dominio.com"</span>
+      <input name="email" id="email" type="email" class="campo__escrita" ngModel #email="ngModel" required pattern="^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$"/>
+      <div *ngIf="email?.touched">
+        <app-mensagem *ngIf="email?.errors?.['required']" mensagem="O campo deve ser preenchido"></app-mensagem>
+        <app-mensagem *ngIf="email?.errors?.['pattern']" mensagem="O campo de email deve seguir este padrão: 'exemplo@dominio.com'"></app-mensagem>
       </div>  
     </div>
 
