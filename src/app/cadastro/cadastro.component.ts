@@ -26,11 +26,23 @@ export class CadastroComponent implements OnInit {
       console.log(form);
   }
 
-  ConsultarCEP(ev: any){
+  ConsultarCEP(ev: any, form: NgForm){
     const cep = ev.target.value;
-
-    this.consultaCepService.consultaCEP(cep).subscribe((resultado: any) => {
-      console.log(resultado);
+    if(cep != ''){
+      this.consultaCepService.consultaCEP(cep).subscribe((resultado: any) => {
+        this.populandoIndereco(resultado, form);
+      })
+    }
+    
+  }
+  
+  private populandoIndereco(resultadoAPI: any, form: NgForm) {
+    form.form.patchValue({
+      endereco: resultadoAPI.logradouro,
+      complemento: resultadoAPI.complemento,
+      bairro: resultadoAPI.bairro,
+      cidade: resultadoAPI.localidade,
+      estado: resultadoAPI.uf
     })
   }
 }
