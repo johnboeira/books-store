@@ -46,10 +46,11 @@
 
     <div class="formulario__campo">
       <label class="campo__etiqueta" for="cep">CEP</label>
-      <input name="cep" id="cep" class="campo__escrita" ngModel #cep="ngModel" required pattern="^(\d{5})(-?\d{3})$" minlength="8" maxlength="9" (blur)="ConsultarCEP($event, f)"/>
+      <input name="cep" id="cep" class="campo__escrita" ngModel #cep="ngModel" required pattern="^(\d{5})(-?\d{3})$" minlength="8" maxlength="9" validadorCep (blur)="ConsultarCEP($event, f)"/>
       <div *ngIf="cep?.touched">
         <app-mensagem *ngIf="cep?.errors?.['required']" mensagem="O campo deve ser preenchido"></app-mensagem>
         <app-mensagem *ngIf="cep?.errors?.['pattern']" mensagem="O campo deve seguir este padrão: '00000-000'"></app-mensagem>
+        <app-mensagem *ngIf="cep?.errors?.['validadorCep']" mensagem="CEP inexistente"></app-mensagem>
       </div>  
     </div>
 
